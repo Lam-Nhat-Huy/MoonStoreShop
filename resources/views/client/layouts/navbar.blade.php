@@ -79,7 +79,7 @@
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
 
-                        @if (Auth::check())
+                        @if (Auth::check() && Auth::user()->role == 0)
                             <a href="" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                                 style="font-size: 16px">
                                 {{ Auth::user()->name }}

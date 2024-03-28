@@ -10,7 +10,9 @@ class LoginController extends Controller
 {
     public function index()
     {
+
         if (Auth::check()) {
+            Auth::logout();
             return redirect()->route('dashboard.index');
         }
         return view('admin.auth.index');

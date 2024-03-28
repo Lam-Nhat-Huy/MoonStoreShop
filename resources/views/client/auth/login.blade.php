@@ -107,7 +107,7 @@
 
                                 <!-- Register buttons -->
                                 <div class="text-center">
-                                    <p>You don't have an acount? <a href=""
+                                    <p>You don't have an acount? <a href="{{ route('login.index') }}"
                                             class="text-decoration-none text-primaray">Register</a></p>
                                 </div>
                             </form>

@@ -32,6 +32,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout.index');
 Route::get('/forget', [AuthController::class, 'forget'])->name('auth.forget');
 Route::post('/forgetPassword', [AuthController::class, 'forgetPassword'])->name('forget.post');
 
+Route::get('/reset/{token}', [AuthController::class, 'reset'])->name('reset.password');
+Route::post('/reset/{token}', [AuthController::class, 'resetPost'])->name('reset.post');
+
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.post');
@@ -41,6 +44,8 @@ Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
 
 // Admin routes
+Route::get('/admin', [LoginController::class, 'index'])->name('admin');
+
 Route::get('/admin/login', [LoginController::class, 'index'])->name('admin.index');
 Route::post('/admin/login', [LoginController::class, 'create'])->name('admin.post');
 

@@ -21,7 +21,7 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" style="background-color: #000000;" id="tab-login"
                                 data-mdb-toggle="pill" href="{{ route('login.index') }}" role="tab"
-                                aria-controls="pills-login" aria-selected="true">Forget Password</a>
+                                aria-controls="pills-login" aria-selected="true">Reset Password</a>
                         </li>
                     </ul>
                     <!-- Pills navs -->
@@ -43,20 +43,33 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('forget.post') }}">
+                            <form method="POST" action="{{ route('reset.post', $user->remember_token) }}">
                                 @csrf
-                                <!-- Email input -->
+                                <!-- password input -->
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="email">Email</label>
-                                    <input type="email" id="email" class="form-control" name="email"
-                                        placeholder="Type email" />
-                                    @error('email')
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" id="password" class="form-control" name="password"
+                                        placeholder="Type password" />
+                                    @error('password')
                                         <label id="firstname-error" class="error mt-2 text-danger"
                                             for="firstname">{{ $message }}</label>
                                     @enderror
+
                                 </div>
 
-                                <button type="submit" class="btn btn-dark btn-block mb-4">Send mail</button>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="password">Confirm Password</label>
+
+                                    <input type="password" id="cpassword" class="form-control" name="cpassword"
+                                        placeholder="Type confirm password" />
+                                    @error('cpassword')
+                                        <label id="firstname-error" class="error mt-2 text-danger"
+                                            for="firstname">{{ $message }}</label>
+                                    @enderror
+
+                                </div>
+
+                                <button type="submit" class="btn btn-dark btn-block mb-4">Reset Password</button>
                             </form>
                         </div>
                     </div>
