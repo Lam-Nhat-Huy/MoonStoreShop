@@ -43,6 +43,9 @@
                                 </div>
                             @endif
 
+                            <p class="mb-4">Enter the email address associated with your account and we will send you a
+                                link to reset
+                                your password</p>
                             <form method="POST" action="{{ route('forget.post') }}">
                                 @csrf
                                 <!-- Email input -->
@@ -57,6 +60,11 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-dark btn-block mb-4">Send mail</button>
+
+                                <div class="text-center">
+                                    <p>Return to the login page? <a href="{{ route('login.index') }}"
+                                            class="text-decoration-none text-primaray">Login</a></p>
+                                </div>
                             </form>
                         </div>
                     </div>

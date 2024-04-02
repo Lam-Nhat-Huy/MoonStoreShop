@@ -100,9 +100,7 @@ class AuthController extends Controller
         if (!empty($user)) {
             if ($request->password == $request->cpassword) {
                 $user->password = Hash::make($request->password);
-                if (empty($user->email_verified_at)) {
-                    $user->email_verified_at = now();
-                }
+                empty($user->email_verified_at) ? now() : $user->email_verified_at;
                 $user->remember_token = Str::random(40);
                 $user->save();
 

@@ -81,8 +81,8 @@
 
                                 <!-- Register buttons -->
                                 <div class="text-center">
-                                    <p>You have an account? <a href=""
-                                            class="text-decoration-none text-dark">Login</a></p>
+                                    <p>You have an account? <a href="{{ route('login.index') }}"
+                                            class="text-decoration-none text-primary">Login</a></p>
                                 </div>
                             </form>
                         </div>

@@ -80,7 +80,8 @@
                         </a>
 
                         @if (Auth::check() && Auth::user()->role == 0)
-                            <a href="" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
+                            <a href="{{ route('profile.index') }}"
+                                class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                                 style="font-size: 16px">
                                 {{ Auth::user()->name }}
                             </a>

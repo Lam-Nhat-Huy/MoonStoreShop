@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Client\ContactController;
+use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\SocialiteController;
 
 // Client routes
@@ -42,6 +43,8 @@ Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.p
 Route::get('/auth/redirect', [SocialiteController::class, 'redirect']);
 Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
+Route::middleware('client.authentication')->get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::middleware('client.authentication')->post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 // Admin routes
 Route::get('/admin', [LoginController::class, 'index'])->name('admin');

@@ -7,11 +7,11 @@
         <script>
             Toastify({
                 text: "{{ $message }}",
-                duration: 10000,
+                duration: 100000,
                 destination: "https://github.com/apvarun/toastify-js",
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "center",
                 stopOnFocus: true,
                 offset: {
