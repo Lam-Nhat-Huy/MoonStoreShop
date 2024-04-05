@@ -80,16 +80,10 @@
                         </a>
 
                         @if (Auth::check() && Auth::user()->role == 0)
-                            <a href="{{ route('profile.index') }}"
+                            <a href="{{ route('profile.index', Auth::user()->id) }}"
                                 class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
                                 style="font-size: 16px">
                                 {{ Auth::user()->name }}
-                            </a>
-
-                            <a href="{{ route('logout.index') }}"
-                                class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
-                                style="font-size: 16px">
-                                Logout
                             </a>
                         @else
                             <a href="{{ route('login.index') }}"

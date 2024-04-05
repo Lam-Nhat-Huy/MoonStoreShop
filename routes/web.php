@@ -43,7 +43,7 @@ Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.p
 Route::get('/auth/redirect', [SocialiteController::class, 'redirect']);
 Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
-Route::middleware('client.authentication')->get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::middleware('client.authentication')->get('/profile/{id}', [ProfileController::class, 'index'])->name('profile.index');
 Route::middleware('client.authentication')->post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
 // Admin routes

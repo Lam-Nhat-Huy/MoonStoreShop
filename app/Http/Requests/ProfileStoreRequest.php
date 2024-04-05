@@ -23,7 +23,7 @@ class ProfileStoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required'
+            'email' => 'required',
         ];
     }
 
