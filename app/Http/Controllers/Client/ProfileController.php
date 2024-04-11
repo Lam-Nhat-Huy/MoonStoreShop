@@ -18,27 +18,18 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        request()->validate(
-            [
-                'username' => 'required'
-            ]
-        );
-
         $data = $request->only('id', 'username', 'email');
         $user = User::find($data['id']);
-
         // Xử lý hình ảnh chỉ khi người dùng tải lên hình mới
         if ($request->hasFile('avatar')) {
             $image = $request->file('avatar');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public', $imageName);
             $filePath = 'storage/' . $imageName;
-
             // Xóa hình ảnh cũ nếu tồn tại và không phải là hình mặc định
             if ($user->avatar && !str_contains($user->avatar, 'default_avatar')) {
                 Storage::delete('public/' . basename($user->avatar));
             }
-
             // Cập nhật đường dẫn hình ảnh mới trong cơ sở dữ liệu
             $user->avatar = $filePath;
         }
