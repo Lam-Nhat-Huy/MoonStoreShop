@@ -14,6 +14,7 @@ use App\Http\Controllers\Client\SocialiteController;
 // Client routes
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/search', [HomeController::class, 'search'])->name('search.index');
 
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/{product}', [HomeController::class, 'product'])->name('product.list');

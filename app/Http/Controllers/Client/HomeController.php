@@ -8,14 +8,30 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'DESC')->limit(6)->get();
+        if ($request->filled('search')) {
+            $products = Product::search($request->search)->get();
+        } else {
+            $products = Product::orderBy('id', 'DESC')->limit(6)->get();
+        }
+
         return view('client.home.index', compact('products'));
     }
 
     public function product(Product $product)
     {
         return view('client.product.detail', compact('product'));
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->filled('search')) {
+            $products = Product::search($request->search)->get();
+        } else {
+            $products = Product::orderBy('id', 'DESC')->limit(6)->get();
+        }
+
+        return view('client.home.index', compact('products'));
     }
 }
