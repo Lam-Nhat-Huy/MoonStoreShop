@@ -156,20 +156,59 @@
         </div>
 
         <!-- Modal Search -->
-        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search" id="app">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
                     <img src="{{ asset('assets') }}/images/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
-                <form class="wrap-search-header flex-w p-l-15" method="GET" action="{{ route('search.index') }}">
-                    @csrf
-                    <input class="plh3" type="text" value="{{ request()->get('search') }}" name="search"
-                        placeholder="Search...">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
+                <form class="wrap-search-header flex-w p-l-15">
+                    <input class="plh3" type="text" v-model="searchQuery" name="search" placeholder="Search...">
+                    <div v-if="results.length > 0" class="mt-3">
+                        <ul v-for="(item, index) in results">
+                            <li>
+                                <a :href="'/product/' + item.id" class="text-dark text-decoration-none">@{{ item.product_name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div v-else class="mt-3">
+                        <p>No result...</p>
+                    </div>
                 </form>
+
+                <script>
+                    const {
+                        createApp
+                    } = Vue;
+
+                    createApp({
+                        data() {
+                            return {
+                                searchQuery: null,
+                                results: []
+                            }
+                        },
+                        methods: {
+                            getResults() {
+                                axios.get('/search/' + this.searchQuery)
+                                    .then(res => {
+                                        this.results = res.data;
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                    });
+                            }
+                        },
+                        watch: {
+                            searchQuery(after, before) {
+                                this.getResults();
+                            }
+                        },
+                        mounted() {
+                            return true;
+                        }
+                    }).mount('#app');
+                </script>
             </div>
         </div>
     </header>

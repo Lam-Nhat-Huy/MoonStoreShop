@@ -22,4 +22,9 @@ class Product extends Model
             'product_name' => (string) $this->product_name,
         ];
     }
+
+    public function searchableAs(): string
+    {
+        return 'myproducts_index';
+    }
 }

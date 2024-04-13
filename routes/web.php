@@ -15,9 +15,9 @@ use App\Http\Controllers\Client\SocialiteController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/search', [HomeController::class, 'search'])->name('search.index');
+Route::get('/product/{product}', [HomeController::class, 'product'])->name('product.list');
 
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-Route::get('/product/{product}', [HomeController::class, 'product'])->name('product.list');
 Route::get('/product-detail', [ProductController::class, 'detail'])->name('product.detail');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
@@ -46,6 +46,9 @@ Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
 
 Route::middleware('client.authentication')->get('/profile/{id}', [ProfileController::class, 'index'])->name('profile.index');
 Route::middleware('client.authentication')->post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+// Route algolia search engine
+Route::get('/search/{query}', [ProductController::class, 'search'])->name('search.products');
 
 // Admin routes
 Route::get('/admin', [LoginController::class, 'index'])->name('admin');
