@@ -13,7 +13,7 @@ class HomeController extends Controller
         if ($request->filled('search')) {
             $products = Product::search($request->search)->get();
         } else {
-            $products = Product::orderBy('id', 'DESC')->limit(6)->get();
+            $products = Product::paginate(4);
         }
 
         return view('client.home.index', compact('products'));

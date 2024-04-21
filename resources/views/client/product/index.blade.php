@@ -3,6 +3,15 @@
 @section('title', 'Trang sản phẩm')
 
 @section('main-content')
+
+    <!-- Title page -->
+    <section class="bg-img1 txt-center p-lr-15 p-tb-92"
+        style="background-image: url('https://file.hstatic.net/200000312481/file/polo_aaf8947f65484e6c9dec8d63d72e266c.jpg">
+        <h2 class="ltext-105 cl0 txt-center">
+            Product
+        </h2>
+    </section>
+
     <!-- Product -->
     <div class="bg0 m-t-23 p-b-140" style="margin-top: 50px">
         <div class="container">

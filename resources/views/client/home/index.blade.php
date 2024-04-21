@@ -386,7 +386,7 @@
                                         {{ $item->product_name }}
                                     </a>
 
-                                    <span class="stext-105 cl3">
+                                    <span class="stext-105 cl3 font-weight-bold">
                                         {{ number_format($item->discount_price, 0, ',', '.') }} VNĐ
                                     </span>
                                 </div>
@@ -401,8 +401,50 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
+
+        <style>
+            .page-link {
+                color: #000000
+            }
+
+            .page-item.active .page-link {
+                background-color: #000000;
+                border-color: #000000;
+            }
+        </style>
+
+        {{-- Phân trang sản phẩn  --}}
+        <div class="text-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    @if ($products->onFirstPage())
+                        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                    @else
+                        <li class="page-item"><a class="page-link" href="{{ $products->previousPageUrl() }}"
+                                rel="prev">&laquo;</a></li>
+                    @endif
+
+                    {{-- Lặp qua các trang --}}
+                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                        <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+
+                    @if ($products->hasMorePages())
+                        <li class="page-item"><a class="page-link" href="{{ $products->nextPageUrl() }}"
+                                rel="next">&raquo;</a></li>
+                    @else
+                        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                    @endif
+                </ul>
+            </nav>
+        </div>
+
+
     </section>
 
 

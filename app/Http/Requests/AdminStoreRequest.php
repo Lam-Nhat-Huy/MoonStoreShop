@@ -30,8 +30,8 @@ class AdminStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Name is required',
-            'password.required' => 'Password is required',
+            'name.required' => 'Please enter your username',
+            'password.required' => 'Please enter your password',
         ];
     }
 }
