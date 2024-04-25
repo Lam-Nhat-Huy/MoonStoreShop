@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -24,5 +26,21 @@ class LoginController extends Controller
             return redirect()->route('dashboard.index');
         }
         return redirect()->route('admin.index')->with('error', "Đăng nhập thất bại");
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerate(true);
+
+        $cookieNames = [$request->session()->getName(), Auth::getRecallerName()];
+        foreach ($cookieNames as $cookieName) {
+            cookie()->queue(cookie()->forget($cookieName));
+        }
+
+        return redirect('/admin');
     }
 }

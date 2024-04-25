@@ -5,12 +5,12 @@
 }
 .input-group-append,
 .input-group-prepend {
-  color: $input-placeholder-color;
+  color: #000;
   width: auto;
   border: none;
 
   .input-group-text {
-    border-color: $border-color;
+    border-color: #000;
     padding: $input-padding-y .75rem;
     color: $input-placeholder-color;
   }

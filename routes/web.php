@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
@@ -19,6 +20,7 @@ Route::get('/product/{product}', [HomeController::class, 'product'])->name('prod
 
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product-detail', [ProductController::class, 'detail'])->name('product.detail');
+
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog-detail', [BlogController::class, 'detail'])->name('blog.detail');
@@ -58,4 +60,12 @@ Route::post('/admin/login', [LoginController::class, 'create'])->name('admin.pos
 
 Route::prefix('admin')->middleware('admin.authentication')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/category', CategoryController::class);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+    Route::get('/search', [CategoryController::class, 'search'])->name('category.search');
+
+    // Route xử lý hàm xóa danh mục, bao gồm hàm hiển thị các danh mục đã xóa, hàm khôi phục, hàm xóa vĩnh viễn
+    Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
+    Route::get('/caregory/{id}/restore', [CategoryController::class, 'restore'])->name('caregory.restore');
+    Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 });
